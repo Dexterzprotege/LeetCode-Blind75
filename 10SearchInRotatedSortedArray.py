@@ -7,6 +7,7 @@ class Solution:
         while left < right:
             mid = (left+right)//2
             
+            # Fixing the Pivot position, before the change or after
             if (nums[mid] < nums[0]) == (target < nums[0]):
                 if nums[mid] < target:
                     left = mid + 1

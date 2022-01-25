@@ -1,5 +1,17 @@
 # Question: https://leetcode.com/problems/decode-ways/
 
+# Generalization:
+'''
+Case 1: number of i and i-1 between 10 and 26:
+        ways[i] = ways[i-1] + ways[i-2]
+Case 2: number of i and i-1 larger than 26:
+        ways[i] = ways[i-1]
+Case 3: number of i==0 and i-1 == 1 or i-1 == 2:
+        ways[i] = ways[i-2]
+Case 4: number of i == 0 and i-1>2:
+        stop and return 0
+'''    
+
 # ------------------------------------------------------------------------------------------------- #
 
 # Solution 3: Dynamic Programming O(N)+O(N)

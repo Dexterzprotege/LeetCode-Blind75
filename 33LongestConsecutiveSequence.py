@@ -1,5 +1,24 @@
 # Question: https://leetcode.com/problems/longest-consecutive-sequence/
 
+# Solution 2: Set approach, add to set compare left and right
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        numSet = set(nums)
+        ans = 0
+        for i in nums:
+            # If we found left element we just continue
+            if i-1 not in numSet:
+                length = 0
+                # Computing answer until we reach the consective limit
+                while i+length in numSet:
+                    length += 1
+                ans = max(ans, length)
+        return ans
+    
+# Verdict:
+# Runtime: 2547 ms, faster than 19.43% of Python3 online submissions for Longest Consecutive Sequence.
+# Memory Usage: 27.7 MB, less than 24.75% of Python3 online submissions for Longest Consecutive Sequence.
+
 # -------------------------------------------------------------------------------------------------------- #
 
 # Solution 1: Brute Force: Sort and compare

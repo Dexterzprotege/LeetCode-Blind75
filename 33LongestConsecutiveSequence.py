@@ -1,5 +1,26 @@
 # Question: https://leetcode.com/problems/longest-consecutive-sequence/
 
+# -------------------------------------------------------------------------------------------------------- #
+
+# Solution 3: Same as Sol 2, but cleaner
+class Solution:
+    def longestConsecutive(self, nums):
+        nums = set(nums)
+        ans = 0
+        for i in nums:
+            if i - 1 not in nums:
+                x = i + 1
+                while x in nums:
+                    x += 1
+                ans = max(ans, x - i)
+        return ans
+    
+# Verdict:
+# Runtime: 176 ms, faster than 98.54% of Python3 online submissions for Longest Consecutive Sequence.
+# Memory Usage: 27.5 MB, less than 35.44% of Python3 online submissions for Longest Consecutive Sequence.
+
+# -------------------------------------------------------------------------------------------------------- #
+
 # Solution 2: Set approach, add to set compare left and right
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
@@ -23,24 +44,21 @@ class Solution:
 
 # Solution 1: Brute Force: Sort and compare
 class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
+    def longestConsecutive(self, nums):
         if not nums:
             return 0
         nums = sorted(nums)
-        ans = 1
-        curr = 1
-        for i in range(0, len(nums)):
-            if nums[i] - nums[i-1] == 1:
-                curr += 1
-                ans = max(ans, curr)
-            elif nums[i] == nums[i-1]:
-                continue
-            else:
-                curr = 1
-        return ans
+        ans, curr = 1, 1
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]:
+                if nums[i] == nums[i-1] + 1:
+                    curr += 1
+                else:
+                    ans = max(ans, curr)
+                    curr = 1
+        return max(ans, curr)
 
 # Verdict:
-# Runtime: 216 ms, faster than 76.70% of Python3 online submissions for Longest Consecutive Sequence.
-# Memory Usage: 23.3 MB, less than 92.43% of Python3 online submissions for Longest Consecutive Sequence.
-
+# Runtime: 365 ms, faster than 44.84% of Python3 online submissions for Longest Consecutive Sequence.
+# Memory Usage: 23.5 MB, less than 90.94% of Python3 online submissions for Longest Consecutive Sequence.
 # -------------------------------------------------------------------------------------------------------- #
